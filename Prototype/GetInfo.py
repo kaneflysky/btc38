@@ -9,7 +9,7 @@ import StringIO
 import json
 from datetime import *
 import time
-#import MySQLdb #ÔÝÁô
+import MySQLdb #æ³¨ï¼šå¤‡ç”¨
 
 url = "http://btc38.com/trade/getCoinHold.php?coinname=btc"
 crl = pycurl.Curl()

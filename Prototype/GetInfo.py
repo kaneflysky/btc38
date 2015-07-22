@@ -11,11 +11,15 @@ from datetime import *
 import time
 import MySQLdb #注：备用
 
-url = "http://btc38.com/trade/getCoinHold.php?coinname=btc"
-crl = pycurl.Curl()
-crl.fp = StringIO.StringIO()
-crl.setopt(pycurl.URL, url)
-crl.setopt(crl.WRITEFUNCTION, crl.fp.write)
-crl.perform()
-GetInfo = crl.fp.getvalue()
-btc = json.loads(GetInfo)
+def getInfo(coin):
+    url = "http://btc38.com/trade/getCoinHold.php?coinname="  + coin
+    crl = pycurl.Curl()
+    crl.fp = StringIO.StringIO()
+    crl.setopt(pycurl.URL, url)
+    crl.setopt(crl.WRITEFUNCTION, crl.fp.write)
+    crl.perform()
+    GetInfo = crl.fp.getvalue()
+    coinInfo = json.loads(GetInfo)
+    return coinInfo
+
+

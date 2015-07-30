@@ -5,8 +5,12 @@
 # @name: startGetInfo.py
 
 import GetInfo
+import json
 
-coin = 'btc'
-GetInfo.getInfo(coin)
-
+coins = ['btc','vpn']
+for coin in coins:
+    coininfo = GetInfo.getInfo(coin)
+    print coin
+    print coininfo["updateTime2"]
+    print coininfo["updateTime"]
 

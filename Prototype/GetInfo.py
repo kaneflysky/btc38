@@ -7,12 +7,14 @@
 import pycurl
 import StringIO
 import json
-from datetime import *
-import time
-import MySQLdb #注：备用
 
-def getInfo(coin):
-    url = "http://btc38.com/trade/getCoinHold.php?coinname="  + coin
+def getInfo(coin,mode='Large'):
+    if (mode == 'Large'): #Large=大户持仓
+        url = "http://btc38.com/trade/getCoinHold.php?coinname="  + coin
+    elif (mode == 'Price'):  #Price=价格
+        url = "http://api.btc38.com/v1/ticker.php?c=all&mk_type="  + coin
+    else:
+        return 'error'
     crl = pycurl.Curl()
     crl.fp = StringIO.StringIO()
     crl.setopt(pycurl.URL, url)

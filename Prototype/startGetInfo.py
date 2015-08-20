@@ -5,9 +5,9 @@
 # @name: startGetInfo.py
 
 import GetInfo
-import json
+#import json
 import MySQLdb
-import ConfigParser
+#import ConfigParser
 import time
 import datetime
 
@@ -23,7 +23,7 @@ cursor=conn.cursor()
 insert_btc38="insert into btc38Info(coin,holders,totalCoins,coinsPerHolders,inflow24H,outflow24H,change24H,inflowWeek,outflowWeek,changeWeek,top10,updateTime,updateTime2) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
 coins = ['BTC','VPN','BLK','DOGE','BTS','NXT','YBC','XRP','TMC']
-#coins = ['BTC']
+#coins = ['BTC']  #测试用
 
 for coin in coins:
     coininfo=GetInfo.getInfo(coin)
@@ -32,13 +32,12 @@ for coin in coins:
     sqltime=cursor.fetchall()
     #转换urltime字符串为datetime
     urltime = datetime.datetime.strptime(coininfo["updateTime"],"%Y-%m-%d %X")
-    #sqltime = datetime.datetime.strptime(str(sqltime),"%Y-%m-%d %X")
+
     try:
         sqltime=sqltime[0][0]
     except:
         sqltime=1
         
-    #if (1 != urltime):
     if (sqltime != urltime):
         param=(coin,coininfo["holders"],coininfo["totalCoins"],coininfo["coinsPerHolders"],coininfo["inflow24H"],coininfo["outflow24H"],coininfo["change24H"],coininfo["inflowWeek"],coininfo["outflowWeek"],coininfo["changeWeek"],coininfo["top10"],coininfo["updateTime"],coininfo["updateTime2"])
         try:

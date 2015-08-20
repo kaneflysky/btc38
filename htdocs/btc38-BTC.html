@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BTC38-btc</title>
+</head>
+<body>
+    <center>
+    <div id="BTC38-btc" style="min-width:400px;height:400px"></div>
+    </center>                   
+    <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="http://cdn.hcharts.cn/highstock/highstock.js"></script>
+    <script>
+    $(function () {
+
+    $.getJSON('data.php', function (data) {
+        // Create the chart
+        $('#BTC38-btc').highcharts('StockChart', {
+
+
+            rangeSelector : {
+                selected : 1
+            },
+
+            title : {
+                text : 'BTC38-btc'
+            },
+
+            series : [{
+                name : 'BTC',
+                data : data,
+                tooltip: {
+                    valueDecimals: 2
+                    }
+                }]
+            });
+        });
+
+    });
+    </script>
+    
+</body>
+</html>
